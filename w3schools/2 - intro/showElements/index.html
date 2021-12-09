@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,11 +12,17 @@
       width: 100px;
       background-color: red;
     }
+
+    .square:hover {
+      cursor: pointer;
+    }
+
     #handleVisibilityButton {
       display: block;
     }
   </style>
 </head>
+
 <body>
   <header>
     <h1 id="título">Mostrar Elementos</h1>
@@ -29,9 +36,12 @@
   </header>
   <main>
     <button id="handleVisibilityButton"></button>
-    <div class="square"></div>
-    <div class="square"></div>
+    <div id="squares">
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
   </main>
   <script src="./script.js"></script>
 </body>
+
 </html>
