@@ -7,22 +7,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mostrar Elementos</title>
   <style>
+    main>header {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    main > header * {
+      margin-bottom: 1rem;
+    }
+
+    #squares {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
     .square {
       height: 100px;
       width: 100px;
-      background-color: red;
       color: transparent;
       user-select: none;
       display: inline-block;
     }
 
-    #squares {
-      display: block;
-    }
-
     .square:hover {
       cursor: pointer;
     }
+
+    #quantityOfSelectedSquares {
+      text-align: center;
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    #handleVisibilityButton {
+      height: 2rem;
+    }
+
   </style>
 </head>
 
@@ -38,14 +61,12 @@
     </nav>
   </header>
   <main>
-    <label for="quantityOfSelectedSquares">Quantidade de quadrados selecionados:&nbsp;</label>
-    <input type="number" id="quantityOfSelectedSquares" value="0" disabled>
-    <button id="handleVisibilityButton"></button>
-    <div id="squares">
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-    </div>
+    <header>
+      <label for="quantityOfSelectedSquares">Quantidade de quadrados ocultos:&nbsp;</label>
+      <input type="number" id="quantityOfSelectedSquares" value="0" disabled>
+      <button id="handleVisibilityButton"></button>
+    </header>
+    <div id="squares"></div>
   </main>
   <script src="./script.js"></script>
 </body>
