@@ -1,6 +1,24 @@
 const SHOW = 1;
 const HIDE = 0;
 
+const generateRandomColor = () => {
+  let maxVal = 0xFFFFFF; // 16777215
+  let randomNumber = Math.random() * maxVal;
+  randomNumber = Math.floor(randomNumber);
+  randomNumber = randomNumber.toString(16);
+  let randColor = randomNumber.padStart(6, 0);
+  return `#${randColor.toUpperCase()}`
+};
+
+function generateSquares(numberOfSquares) {
+  for (let i = 0; i < numberOfSquares; i++) {
+    let square = document.createElement("div");
+    square.className = 'square';
+    square.style.backgroundColor = generateRandomColor();
+    document.getElementById('squares').append(square);
+  }
+};
+
 function handleSquaresClick(e) {
   const [selectedSquare] = e.path;
 
@@ -21,20 +39,29 @@ function handleSquaresClick(e) {
 };
 
 function defaultSettings() {
-  let squares = document.getElementsByClassName('square');
-  Object.entries(squares).forEach(([, square], index) => {
-    square.style.border = 'none';
-    square.style.opacity = 1;
-    square.innerHTML = 0;
-    square.style.cursor = 'pointer';
-  });
   let handleVisibilityButton = document.getElementById('handleVisibilityButton');
-  handleVisibilityButton.innerHTML = 'Ocultar quadrado(s)';
-  handleVisibilityButton.value = SHOW;
   let quantityOfSelectedSquares = document.getElementById('quantityOfSelectedSquares');
-  quantityOfSelectedSquares.value = 0;
+
+  let squares = document.getElementsByClassName('square');
+  if (squares.length > 0) {
+    Object.entries(squares).forEach(([, square], index) => {
+      square.style.border = 'none';
+      square.style.opacity = 1;
+      square.innerHTML = 0;
+      square.style.cursor = 'pointer';
+    });
+
+    handleVisibilityButton.innerHTML = 'Ocultar quadrado(s)';
+    handleVisibilityButton.value = SHOW;
+    quantityOfSelectedSquares.value = 0;
+  } else {
+    const main = document.body.children[1];
+    document.body.removeChild(main);
+    alert('Não há quadrados em tela!');
+  };
 };
 
+generateSquares(2);
 defaultSettings();
 
 let handleVisibilityButton = document.getElementById('handleVisibilityButton');
@@ -47,7 +74,7 @@ handleVisibilityButton.onclick = () => {
     Object.entries(squares).forEach(([, square], index) => {
       const squareStatus = Boolean(Number(square.innerHTML));
       square.style.cursor = 'default';
-            
+
       if (squareStatus) {
         let quantityOfSelectedSquares = document.getElementById('quantityOfSelectedSquares');
         quantityOfSelectedSquares.value = Number(quantityOfSelectedSquares.value) + 1;
@@ -71,5 +98,5 @@ handleVisibilityButton.onclick = () => {
 let squaresContainer = document.getElementById('squares');
 squaresContainer.onclick = (e) => {
   let handleVisibilityButtonStatus = Boolean(Number(handleVisibilityButton.value));
-  if (handleVisibilityButtonStatus) handleSquaresClick(e);  
+  if (handleVisibilityButtonStatus) handleSquaresClick(e);
 }; 
