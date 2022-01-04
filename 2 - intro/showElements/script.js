@@ -3,11 +3,12 @@ const HIDE = 0;
 
 const generateRandomColor = () => {
   let maxVal = 0xFFFFFF; // 16777215
-  let randomNumber = Math.random() * maxVal;
-  randomNumber = Math.floor(randomNumber);
-  randomNumber = randomNumber.toString(16);
-  let randColor = randomNumber.padStart(6, 0);
-  return `#${randColor.toUpperCase()}`
+  let randomValue = Math.random();
+  let randomNumber = randomValue * maxVal;
+  randomNumber = Math.floor(randomNumber); // converts randomNumber to int
+  randomNumber = randomNumber.toString(16); // converts random number to hex string
+  let randColor = randomNumber.padStart(6, 0); // ensures that the color is in the correct range
+  return `#${randColor.toUpperCase()}`;
 };
 
 function generateSquares(numberOfSquares) {
