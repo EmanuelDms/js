@@ -43,14 +43,16 @@ function defaultSettings() {
   let handleVisibilityButton = document.getElementById('handleVisibilityButton');
   let quantityOfSelectedSquares = document.getElementById('quantityOfSelectedSquares');
 
-  let squares = document.getElementsByClassName('square');
-  if (squares.length > 0) {
-    Object.entries(squares).forEach(([, square], index) => {
+  let squares = document.getElementById('squares');
+  const hasSquares = squares.childElementCount > 0;
+  if (hasSquares) {
+    for (let i = 0; i < squares.childElementCount; i++) {
+      const square = squares.children[i];
       square.style.border = 'none';
       square.style.opacity = 1;
       square.innerHTML = 0;
       square.style.cursor = 'pointer';
-    });
+    };
 
     handleVisibilityButton.innerHTML = 'Ocultar quadrado(s)';
     handleVisibilityButton.value = SHOW;
